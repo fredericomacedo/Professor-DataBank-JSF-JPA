@@ -161,6 +161,7 @@
 								value="#{newProfessor.lastName}"
 								a:placeholder="#{uiconsts['columnLabel_LastName']}">
 								<!-- TODO validate using f:validateLength -->
+								<f:validateLength minimum="1" maximum="50" />
 								
 							</h:inputText>
 						</h:panelGroup>
@@ -181,6 +182,7 @@
 								value="#{newProfessor.firstName}"
 								a:placeholder="#{uiconsts['columnLabel_FirstName']}">
 								<!-- TODO validate using f:validateLength -->
+								<f:validateLength minimum="1" maximum="50" />
 								
 							</h:inputText>
 						</h:panelGroup>
@@ -201,6 +203,7 @@
 								value="#{newProfessor.phoneNumber}"
 								a:placeholder="#{uiconsts['example_PhoneNumber']}">
 								<!-- TODO validate using f:validator and using the phone validator class -->
+								<f:validator validatorId="phoneValidator" />
 								
 							</h:inputText>
 						</h:panelGroup>
@@ -221,16 +224,56 @@
 								value="#{newProfessor.email}"
 								a:placeholder="#{uiconsts['columnLabel_Email']}">
 								<!-- TODO validate using f:validator and using the email validator class -->
-								
+								<f:validator validatorId="emailValidator" />
 							</h:inputText>
 						</h:panelGroup>
 						<!-- display any errors for email here -->
 						<h:message for="new_email" style="color:red" />
 
 						<!-- TODO add a panel for degree input field -->
+						
+						<h:panelGroup class="input-group">
+							<!-- separation with degree -->
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="degree-addon"><i
+									class="fas fa-arrow-up" /></span>
+							</div>
+							<!-- input field for the last name of a new professor attached NewProfessorView-->
+							<!-- combobox for the degree of a new professor attached NewProfessorView-->
+						    <h:selectOneMenu id="new_degree"
+						        styleClass="form-control placeholder-darkgray"
+						        aria-describedby="degree-addon"
+						        value="#{newProfessor.degree}">
+						        <f:selectItems value="#{listDataDaoImpl.readAllDegrees()}" />
+						    </h:selectOneMenu>
+							
+						</h:panelGroup>
+						<!-- display any errors for last name here -->
+						<h:message for="new_degree" style="color:red" />
+						
+						
 
 						<!-- TODO add a panel for major input field -->
-
+						<h:panelGroup class="input-group">
+							<!-- separation with degree -->
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="major-addon"><i
+									class="fas fa fa-book" /></span>
+							</div>
+							<!-- input field for the last name of a new professor attached NewProfessorView-->
+							<h:inputText type="text" id="new_major"
+								styleClass="form-control placeholder-darkgray"
+								aria-describedby="major-addon"
+								validatorMessage="#{uiconsts['enter_valid_string']}"
+								value="#{newProfessor.major}"
+								a:placeholder="#{uiconsts['columnLabel_Major']}">
+								<!-- TODO validate using f:validateLength -->
+								<f:validateLength minimum="1" maximum="45" />
+								
+							</h:inputText>
+						</h:panelGroup>
+						<!-- display any errors for last name here -->
+						<h:message for="new_major" style="color:red" />
 					</h:panelGrid>
 					<!-- submit and cancel buttons for adding new professor -->
 					<h:panelGrid id="actions" columns="2" cellpadding="10">
@@ -275,7 +318,7 @@
 							validatorMessage="#{uiconsts['enter_valid_string']}"
 							value="#{professor.lastName}" rendered="#{professor.editable}">
 							<!-- TODO validate using f:validateLength -->
-							<f:validateLength minimum="2" maximum="50" />
+							<f:validateLength minimum="1" maximum="50" />
 						</h:inputText>
 						<br />
 						<!-- if validation fails display text here -->
@@ -293,7 +336,7 @@
 							validatorMessage="#{uiconsts['enter_valid_string']}"
 							value="#{professor.firstName}" rendered="#{professor.editable}">
 							<!-- TODO validate using f:validateLength -->
-							
+							<f:validateLength minimum="1" maximum="50" />
 						</h:inputText>
 						<br />
 						<!-- if validation fails display text here -->
@@ -311,7 +354,7 @@
 							validatorMessage="#{uiconsts['enter_valid_phonenumber']}"
 							value="#{professor.phoneNumber}" rendered="#{professor.editable}">
 							<!-- TODO validate using f:validator and using the phone validator class -->
-							
+							<f:validator validatorId="phoneValidator" />
 						</h:inputText>
 						<br />
 						<!-- if validation fails display text here -->
@@ -329,7 +372,7 @@
 							validatorMessage="#{uiconsts['enter_valid_email']}"
 							value="#{professor.email}" rendered="#{professor.editable}">
 							<!-- TODO validate using f:validator and using the email validator class -->
-							
+							<f:validator validatorId="emailValidator" />
 						</h:inputText>
 						<br />
 						<!-- if validation fails display text here -->
@@ -338,9 +381,44 @@
 					</h:column>
 
 					<!-- TODO add a column for the degree field -->
-
+					<h:column>
+						<!-- Column name -->
+						<f:facet name="header">#{uiconsts['columnLabel_Degree']}</f:facet>
+						<!-- cell table content, only visible if professor is not in an editable state-->
+						<h:outputText value="#{professor.degree}"
+							rendered="#{not professor.editable}" />
+						<!-- input for editing a field of professor, only visible if professor is in an editable state-->
+						<h:inputText id="degree_editable"
+							validatorMessage="#{uiconsts['enter_valid_string']}"
+							value="#{professor.degree}" rendered="#{professor.editable}">
+							<!-- TODO validate using f:validateLength -->
+							<f:validateLength minimum="1" maximum="45" />
+						</h:inputText>
+						<br />
+						<!-- if validation fails display text here -->
+						<h:message for="degree_editable" class="validator-message"
+							style="color:red" />
+					</h:column>
 					<!-- TODO add a column for the major field -->
-
+					<h:column>
+						<!-- Column name -->
+						<f:facet name="header">#{uiconsts['columnLabel_Major']}</f:facet>
+						<!-- cell table content, only visible if professor is not in an editable state-->
+						<h:outputText value="#{professor.major}"
+							rendered="#{not professor.editable}" />
+						<!-- input for editing a field of professor, only visible if professor is in an editable state-->
+						<h:inputText id="major_editable"
+							validatorMessage="#{uiconsts['enter_valid_string']}"
+							value="#{professor.major}" rendered="#{professor.editable}">
+							<!-- TODO validate using f:validateLength -->
+							<f:validateLength minimum="1" maximum="45" />
+						</h:inputText>
+						<br />
+						<!-- if validation fails display text here -->
+						<h:message for="major_editable" class="validator-message"
+							style="color:red" />
+					</h:column>
+					
 					<!-- Action column -->
 					<h:column>
 						<!-- column name -->

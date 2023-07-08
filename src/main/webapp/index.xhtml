@@ -161,6 +161,7 @@
 								value="#{newProfessor.lastName}"
 								a:placeholder="#{uiconsts['columnLabel_LastName']}">
 								<!-- TODO validate using f:validateLength -->
+								<f:validateLength minimum="1" maximum="50" />
 								
 							</h:inputText>
 						</h:panelGroup>
@@ -181,6 +182,7 @@
 								value="#{newProfessor.firstName}"
 								a:placeholder="#{uiconsts['columnLabel_FirstName']}">
 								<!-- TODO validate using f:validateLength -->
+								<f:validateLength minimum="1" maximum="50" />
 								
 							</h:inputText>
 						</h:panelGroup>
@@ -201,6 +203,7 @@
 								value="#{newProfessor.phoneNumber}"
 								a:placeholder="#{uiconsts['example_PhoneNumber']}">
 								<!-- TODO validate using f:validator and using the phone validator class -->
+								<f:validator validatorId="phoneValidator" />
 								
 							</h:inputText>
 						</h:panelGroup>
@@ -221,16 +224,52 @@
 								value="#{newProfessor.email}"
 								a:placeholder="#{uiconsts['columnLabel_Email']}">
 								<!-- TODO validate using f:validator and using the email validator class -->
-								
+								<f:validator validatorId="emailValidator" />
 							</h:inputText>
 						</h:panelGroup>
 						<!-- display any errors for email here -->
 						<h:message for="new_email" style="color:red" />
 
 						<!-- TODO add a panel for degree input field -->
+						
+						<h:panelGroup class="input-group">
+							<!-- separation with degree -->
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="degree-addon"><i
+									class="fas fa-arrow-up" /></span>
+							</div>
+							<!-- input field for the last name of a new professor attached NewProfessorView-->
+							<!-- combobox for the degree of a new professor attached NewProfessorView-->
+						    <h:selectOneMenu id="new_degree"
+						        styleClass="form-control placeholder-darkgray"
+						        aria-describedby="degree-addon"
+						        value="#{newProfessor.degree}">
+						        <f:selectItems value="#{listDataDaoImpl.readAllDegrees()}" />
+						    </h:selectOneMenu>
+							
+						</h:panelGroup>
+						
+						
+						
 
 						<!-- TODO add a panel for major input field -->
-
+						<h:panelGroup class="input-group">
+							<!-- separation with degree -->
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="major-addon"><i
+									class="fas fa fa-book" /></span>
+							</div>
+							
+							<h:selectOneMenu id="new_major"
+						        styleClass="form-control placeholder-darkgray"
+						        aria-describedby="major-addon"
+						        value="#{newProfessor.major}">
+						        <f:selectItems value="#{listDataDaoImpl.readAllMajors()}" />
+   							 </h:selectOneMenu>
+						    
+						</h:panelGroup>
+						
+						
 					</h:panelGrid>
 					<!-- submit and cancel buttons for adding new professor -->
 					<h:panelGrid id="actions" columns="2" cellpadding="10">
@@ -293,7 +332,7 @@
 							validatorMessage="#{uiconsts['enter_valid_string']}"
 							value="#{professor.firstName}" rendered="#{professor.editable}">
 							<!-- TODO validate using f:validateLength -->
-							
+							<f:validateLength minimum="1" maximum="50" />
 						</h:inputText>
 						<br />
 						<!-- if validation fails display text here -->
@@ -311,7 +350,7 @@
 							validatorMessage="#{uiconsts['enter_valid_phonenumber']}"
 							value="#{professor.phoneNumber}" rendered="#{professor.editable}">
 							<!-- TODO validate using f:validator and using the phone validator class -->
-							
+							<f:validator validatorId="phoneValidator" />
 						</h:inputText>
 						<br />
 						<!-- if validation fails display text here -->
@@ -329,7 +368,7 @@
 							validatorMessage="#{uiconsts['enter_valid_email']}"
 							value="#{professor.email}" rendered="#{professor.editable}">
 							<!-- TODO validate using f:validator and using the email validator class -->
-							
+							<f:validator validatorId="emailValidator" />
 						</h:inputText>
 						<br />
 						<!-- if validation fails display text here -->
@@ -338,9 +377,41 @@
 					</h:column>
 
 					<!-- TODO add a column for the degree field -->
-
+					<h:column>
+						<!-- Column name -->
+						<f:facet name="header">#{uiconsts['columnLabel_Degree']}</f:facet>
+						<!-- cell table content, only visible if professor is not in an editable state-->
+						<h:outputText value="#{professor.degree}"
+							rendered="#{not professor.editable}" />
+						
+						<!-- input for editing a field of professor, only visible if professor is in an editable state-->
+					    <h:selectOneMenu id="degree_editable" 
+					    	styleClass="form-control placeholder-darkgray"
+						   
+						    
+					        value="#{professor.degree}" rendered="#{professor.editable}">
+					        <f:selectItems value="#{listDataDaoImpl.readAllDegrees()}" />
+					    </h:selectOneMenu>
+						<br />
+						
+					</h:column>
 					<!-- TODO add a column for the major field -->
-
+					<h:column>
+						<!-- Column name -->
+						<f:facet name="header">#{uiconsts['columnLabel_Major']}</f:facet>
+						<!-- cell table content, only visible if professor is not in an editable state-->
+						<h:outputText value="#{professor.major}"
+							rendered="#{not professor.editable}" />
+						<!-- input for editing a field of professor, only visible if professor is in an editable state-->
+						<h:selectOneMenu id="major_editable"
+							styleClass="form-control placeholder-darkgray"
+						    value="#{professor.major}" rendered="#{professor.editable}">
+						        <f:selectItems value="#{listDataDaoImpl.readAllMajors()}" />
+   						</h:selectOneMenu>
+						<br />
+						
+					</h:column>
+					
 					<!-- Action column -->
 					<h:column>
 						<!-- column name -->
@@ -422,7 +493,7 @@
 						<h:panelGroup class="refreshFooter">
 							<!-- TODO - fix method call -->
 							<h:commandButton value="#{uiconsts['refreshButtonLabel']}"
-								action="#{professorController.doSomething()}" />
+								action="#{professorController.loadProfessors()}" />
 						</h:panelGroup>
 					</f:facet>
 				</h:dataTable>

@@ -36,6 +36,8 @@ public class NewProfessorView implements Serializable {
 	protected String firstName;
 	protected String email;
 	protected String phoneNumber;
+	protected String degree;
+	protected String major;
 	protected LocalDateTime created;
 	protected LocalDateTime updated;
 	protected int version = 1;
@@ -92,6 +94,25 @@ public class NewProfessorView implements Serializable {
 	public void setPhoneNumber(String phonNumeber) {
 		this.phoneNumber = phonNumeber;
 	}
+	
+	
+	
+
+	public String getDegree() {
+		return degree;
+	}
+
+	public void setDegree(String degree) {
+		this.degree = degree;
+	}
+
+	public String getMajor() {
+		return major;
+	}
+
+	public void setMajor(String major) {
+		this.major = major;
+	}
 
 	public LocalDateTime getCreated() {
 		return created;
@@ -118,7 +139,7 @@ public class NewProfessorView implements Serializable {
 	}
 
 	public void addProfessor() {
-		if (allNotNullOrEmpty(firstName, lastName /* TODO 11 - Don't forget to add the other variables that are not nullable */)) {
+		if (allNotNullOrEmpty(firstName, lastName/* TODO 11 - Don't forget to add the other variables that are not nullable */)) {
 			ProfessorPojo theNewProfessor = new ProfessorPojo();
 			theNewProfessor.setFirstName(getFirstName());
 			theNewProfessor.setLastName(getLastName());
@@ -126,6 +147,8 @@ public class NewProfessorView implements Serializable {
 			//TODO 12 - Call other setters
 			theNewProfessor.setEmail(getEmail());
 			theNewProfessor.setPhoneNumber(getPhoneNumber());
+			theNewProfessor.setDegree(getDegree());
+			theNewProfessor.setMajor(getMajor());
 			theNewProfessor.setCreated(getCreated());
 			theNewProfessor.setUpdated(getUpdated());
 			professorController.addNewProfessor(theNewProfessor);
@@ -136,6 +159,8 @@ public class NewProfessorView implements Serializable {
 			//TODO 13 - Set everything else to null
 			setEmail(null);
 			setPhoneNumber(null);
+			setDegree(null);
+			setMajor(null);
 			setCreated(null);
 			setUpdated(null);
 			
