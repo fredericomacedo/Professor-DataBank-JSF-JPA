@@ -1,0 +1,13 @@
+databank/dao/ProfessorDao.class
+databank/model/ProfessorPojoListener.class
+databank/jsf/ProfessorController.class
+databank/jsf/NewProfessorView.class
+databank/model/ProfessorPojo.class
+databank/dao/ProfessorDaoImpl.class
+databank/jsf/PhoneValidator.class
+databank/dao/ListDataDaoImpl.class
+databank/jsf/EmailValidator.class
+databank/model/ProfessorPojo_.class
+databank/config/FacesConfigAndServletContextListener.class
+ejb/ProfessorService.class
+databank/dao/ListDataDao.class

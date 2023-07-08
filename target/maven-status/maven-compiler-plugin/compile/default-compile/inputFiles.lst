@@ -1,0 +1,13 @@
+/Users/fredmacedo/java-programs/CST8277_EnterpriseApplication/Assignment2/DataBank-JSF-JPA-Professor-Skeleton/src/main/java/databank/dao/ProfessorDaoImpl.java
+/Users/fredmacedo/java-programs/CST8277_EnterpriseApplication/Assignment2/DataBank-JSF-JPA-Professor-Skeleton/src/main/java/databank/dao/ListDataDaoImpl.java
+/Users/fredmacedo/java-programs/CST8277_EnterpriseApplication/Assignment2/DataBank-JSF-JPA-Professor-Skeleton/src/main/java/databank/dao/ListDataDao.java
+/Users/fredmacedo/java-programs/CST8277_EnterpriseApplication/Assignment2/DataBank-JSF-JPA-Professor-Skeleton/src/main/java/databank/config/FacesConfigAndServletContextListener.java
+/Users/fredmacedo/java-programs/CST8277_EnterpriseApplication/Assignment2/DataBank-JSF-JPA-Professor-Skeleton/src/main/java/databank/jsf/ProfessorController.java
+/Users/fredmacedo/java-programs/CST8277_EnterpriseApplication/Assignment2/DataBank-JSF-JPA-Professor-Skeleton/src/main/java/databank/model/ProfessorPojoListener.java
+/Users/fredmacedo/java-programs/CST8277_EnterpriseApplication/Assignment2/DataBank-JSF-JPA-Professor-Skeleton/src/main/java/databank/jsf/PhoneValidator.java
+/Users/fredmacedo/java-programs/CST8277_EnterpriseApplication/Assignment2/DataBank-JSF-JPA-Professor-Skeleton/src/main/java/ejb/ProfessorService.java
+/Users/fredmacedo/java-programs/CST8277_EnterpriseApplication/Assignment2/DataBank-JSF-JPA-Professor-Skeleton/src/main/java/databank/model/ProfessorPojo_.java
+/Users/fredmacedo/java-programs/CST8277_EnterpriseApplication/Assignment2/DataBank-JSF-JPA-Professor-Skeleton/src/main/java/databank/jsf/NewProfessorView.java
+/Users/fredmacedo/java-programs/CST8277_EnterpriseApplication/Assignment2/DataBank-JSF-JPA-Professor-Skeleton/src/main/java/databank/model/ProfessorPojo.java
+/Users/fredmacedo/java-programs/CST8277_EnterpriseApplication/Assignment2/DataBank-JSF-JPA-Professor-Skeleton/src/main/java/databank/jsf/EmailValidator.java
+/Users/fredmacedo/java-programs/CST8277_EnterpriseApplication/Assignment2/DataBank-JSF-JPA-Professor-Skeleton/src/main/java/databank/dao/ProfessorDao.java
